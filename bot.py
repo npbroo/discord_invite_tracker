@@ -9,8 +9,6 @@ client = discord.Client()
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
 
-#@client.event
-
 
 @client.event
 async def on_message(message):
@@ -24,9 +22,10 @@ async def on_message(message):
         await message.channel.send('ROG STRIXX!')
 
     if message.content.startswith('$countI'):
-        invite = await client.fetch_invite('f5v5FB9saE', with_counts=True)
+        #invite = await client.fetch_invite('f5v5FB9saE', with_counts=True)
+        #invite = await client.invites()
         print('invites: ')
-        print(invite)
+        #print(invite)
 
 
 client.run(os.getenv('TOKEN'))
