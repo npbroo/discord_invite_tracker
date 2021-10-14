@@ -28,7 +28,6 @@ async def data():
     #get the form 
     form_data = await request.form
     links = form_data['discord links'].split('\r\n')
-    #print(links)
 
     guild = await bot.fetch_guild('882317671457243196')
     print(guild)
