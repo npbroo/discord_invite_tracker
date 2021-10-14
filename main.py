@@ -17,12 +17,6 @@ app = Quart(__name__)
 
 @app.route("/")
 async def home():
-    '''
-    help1 = "to get all invites for the server go to: <a href={{ url_for('getAllInvites') }}'>/get-all-invites</a></br>"
-    help2 = "to get invite counts for each link go to: /get-invite-counts</br>"
-    help3 = "to check a specific invite link or set of invite links go to: /check-invites</br>"
-    return help1 + help2 + help3
-    '''
     return await render_template("index.html")
 
 @app.route("/check-invites")
