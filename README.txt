@@ -12,3 +12,6 @@ add this line:
 **If you need help generating a token**
     go here: https://discord.com/developers/applications/
     then create a new applications and a new bot to get a token
+
+Run the app and visit the web application at the url
+- to export a list of all invites, visit the endpoint/get-all-invites
