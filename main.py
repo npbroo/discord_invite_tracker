@@ -53,7 +53,7 @@ async def data():
     for invite in distinctInvites:
         inviteList += invite.url + "  ==>  " + str(invite.uses) + "</br>"
         totalInvites += invite.uses
-        print(invite.inviter, "= ", invite.url, " ==> ", invite.uses, "uses")
+        #print(invite.inviter, "= ", invite.url, " ==> ", invite.uses, "uses")
     inviteList += "</br>Total invites for this set: " + str(totalInvites) + "</br>"
 
     return inviteList
@@ -66,7 +66,7 @@ async def getAllInvites():
     inviteList = ""
     for invite in invites:
         inviteList += invite.url + "</br>"
-        print(invite.inviter, "= ", invite.url)
+        #print(invite.inviter, "= ", invite.url)
     return inviteList
 
 @app.route("/get-invite-stats")
@@ -82,7 +82,7 @@ async def getInviteStats():
         inviteList += "<td>" + str(invite.inviter) + "</td></tr>"
         totalInvites += invite.uses
         #inviteList += invite.url + " ==> " + str(invite.uses) + "</br>"
-        print(invite.inviter, " ==> ", invite.url, " ==> ", invite.uses, "uses")
+        #print(invite.inviter, " ==> ", invite.url, " ==> ", invite.uses, "uses")
     inviteList += "</table></br>"
     inviteList += "</br>Total invites: " + str(totalInvites) + "</br>"
     return inviteList
