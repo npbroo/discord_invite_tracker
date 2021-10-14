@@ -17,10 +17,14 @@ app = Quart(__name__)
 
 @app.route("/")
 async def home():
-    help1 = "to get all invites for the server go to: /get-all-invites</br>"
+    '''
+    help1 = "to get all invites for the server go to: <a href={{ url_for('getAllInvites') }}'>/get-all-invites</a></br>"
     help2 = "to get invite counts for each link go to: /get-invite-counts</br>"
     help3 = "to check a specific invite link or set of invite links go to: /check-invites</br>"
     return help1 + help2 + help3
+    '''
+    return await render_template("index.html")
+
 
 @app.route("/check-invites")
 async def checkInvites():
@@ -67,20 +71,25 @@ async def getAllInvites():
         print(invite.inviter, "= ", invite.url)
     return inviteList
 
-@app.route("/get-invite-counts")
-async def getInviteCounts():
+@app.route("/get-invite-stats")
+async def getInviteStats():
     guild = await bot.fetch_guild('882317671457243196')
     print(guild)
     invites = await guild.invites()
-    inviteList = "<table><tr><th>Invite Link</th><th>Uses</th></tr>"
+    inviteList = "<table><tr><th>Invite Link</th><th>Uses</th><th>Inviter</th></tr>"
+    totalInvites = 0
     for invite in invites:
-        inviteList += "<tr><th>" + invite.url + "</th>"
-        inviteList += "<th>" + str(invite.uses) + "</th></tr>"
+        inviteList += "<tr><td>" + invite.url + "</td>"
+        inviteList += "<td>" + str(invite.uses) + "</td>"
+        inviteList += "<td>" + str(invite.inviter) + "</td></tr>"
+        totalInvites += invite.uses
         #inviteList += invite.url + " ==> " + str(invite.uses) + "</br>"
         print(invite.inviter, " ==> ", invite.url, " ==> ", invite.uses, "uses")
-    inviteList += "</table>"
+    inviteList += "</table></br>"
+    inviteList += "</br>Total invites: " + str(totalInvites) + "</br>"
     return inviteList
 
+#bot.loop.create_task(api.app.run_task(host='0.0.0.0', port=PORT))
 bot.loop.create_task(app.run_task())
 
 bot.run(TOKEN)
