@@ -40,7 +40,6 @@ async def data():
     guild = await bot.fetch_guild('882317671457243196')
     print(guild)
     invites = await guild.invites()
-    inviteList = ""
 
     distinctInvites = []
     for invite in invites:
