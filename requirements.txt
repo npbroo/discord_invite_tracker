@@ -6,6 +6,8 @@ blinker==1.4
 chardet==4.0.0
 click==8.0.3
 discord.py==1.7.3
+Flask==2.0.2
+gunicorn==20.1.0
 h11==0.12.0
 h2==4.1.0
 hpack==4.0.0
@@ -13,7 +15,7 @@ Hypercorn==0.11.2
 hyperframe==6.0.1
 idna==3.3
 itsdangerous==2.0.1
-Jinja2==2.10.3
+Jinja2==3.0.2
 MarkupSafe==2.0.1
 multidict==5.2.0
 priority==2.0.0
