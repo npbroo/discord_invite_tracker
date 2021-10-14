@@ -25,7 +25,6 @@ async def home():
     '''
     return await render_template("index.html")
 
-
 @app.route("/check-invites")
 async def checkInvites():
     return await render_template("pasteInviteLinks.html")
@@ -88,7 +87,8 @@ async def getInviteStats():
     inviteList += "</br>Total invites: " + str(totalInvites) + "</br>"
     return inviteList
 
-#bot.loop.create_task(api.app.run_task(host='0.0.0.0', port=PORT))
-bot.loop.create_task(app.run_task())
+PORT = int(os.environ.get("PORT", 5000))
+bot.loop.create_task(app.run_task(host='0.0.0.0', port=PORT))
+#bot.loop.create_task(app.run_task())
 
 bot.run(TOKEN)
