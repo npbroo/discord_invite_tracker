@@ -101,6 +101,27 @@ async def clearUnusedInvites():
     render_page += "</br>Deleted " + str(deleted_invites) + " invites"
     return render_page
 
+@app.route("/clear-unused-invites-2")
+async def clearUnusedInvites2():
+    guild = await bot.fetch_guild('882317671457243196')
+    print(guild)
+    invites = await guild.invites()
+    deleted_invites = 0
+    render_page = "Deleted Invites: </br>"
+    for invite in invites:
+        # whitelisted invite usernames (dont delete invites from these users)
+        if str(invite.inviter) == "Skipper#7343" or str(invite.inviter) == "Finn  🏆#8141" or str(invite.inviter) == "npbroo#5486" or str(invite.inviter) == "Hopper#3211" or str(invite.inviter) == "Aura#4527" or str(invite.inviter) == "Scott#2054" or str(invite.inviter) == "canopyman#4147" or str(invite.inviter) == "Devin#1667":
+            render_page += "</br>Found invite by: " + str(invite.inviter) + " | This user is whitelisted (will not delete invite)"
+            continue
+        if invite.uses == 0 or invite.uses == 1:
+            print(invite)
+            deleted_invites += 1
+            await invite.delete(reason="Too many invites on Discord server, invite cleared due to no invites")
+            render_page += "</br>Deleted invite: " + str(invite.url) + " by " + str(invite.inviter) + " | total uses: " + str(invite.uses)
+  
+    render_page += "</br>Deleted " + str(deleted_invites) + " invites"
+    return render_page
+
 PORT = int(os.environ.get("PORT", 5000))
 bot.loop.create_task(app.run_task(host='0.0.0.0', port=PORT))
 #bot.loop.create_task(app.run_task())
